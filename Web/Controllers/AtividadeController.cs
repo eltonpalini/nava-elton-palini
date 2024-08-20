@@ -51,8 +51,8 @@ namespace Web.Controllers
         [Route("{nome}/{id}")]
         public IActionResult Put([FromRoute] string nome, [FromRoute] int id)
         {
-            _servicoGerenciamentoAtividades.Concluir(id, nome);
-            return Ok();
+            var atividade = _servicoGerenciamentoAtividades.Concluir(id, nome);
+            return Ok(atividade);
         }
     }
 }

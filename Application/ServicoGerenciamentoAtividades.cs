@@ -1,9 +1,4 @@
 ﻿using Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application
 {
@@ -16,12 +11,15 @@ namespace Application
             _listaAtividades = new();
         }
 
-        public void Concluir(int id, string nome)
+        public IAtividade Concluir(int id, string nome)
         {
             var atividade = _listaAtividades.FirstOrDefault(f => f.Nome.ToLower() == nome.ToLower())?.Atividades.FirstOrDefault(f => f.Id == id);
 
             if (atividade != null)
+            {
                 atividade.EstaConcluida = true;
+                return atividade;
+            }
             else
                 throw new Exception("Nome da atividade não localizada");
             
@@ -43,7 +41,7 @@ namespace Application
                 _listaAtividades.Add(_listaAtividade);
             }
 
-            _listaAtividade.Atividades.Add(atividade);
+            _listaAtividade.Adicionar(atividade);
         }
     }
 }
